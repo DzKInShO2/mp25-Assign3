@@ -27,11 +27,23 @@
             android:layout_height="48dp" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/newNameTextEdit"
             android:layout_width="326dp"
             android:layout_height="48dp"
             android:ems="10"
             android:hint="Name"
+            android:inputType="text" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="6dp" />
+
+        <EditText
+            android:id="@+id/newEmailTextEdit"
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:hint="Email"
             android:inputType="text" />
 
         <Space

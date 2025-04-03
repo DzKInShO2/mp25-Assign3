@@ -27,11 +27,11 @@
             android:layout_height="48dp" />
 
         <EditText
-            android:id="@+id/nameTextEdit"
+            android:id="@+id/emailTextEdit"
             android:layout_width="326dp"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="Email"
             android:inputType="text" />
 
         <Space
@@ -55,5 +55,6 @@
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:text="Login" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
