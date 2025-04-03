@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Memento"
@@ -28,7 +27,7 @@
             android:layout_height="72dp" />
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/loginPageButton"
             android:layout_width="196dp"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -39,7 +38,7 @@
             android:layout_height="12dp" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/registerPageButton"
             android:layout_width="172dp"
             android:layout_height="wrap_content"
             android:text="Register"

@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="96dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Register"
             android:textAlignment="center"
             android:textSize="34sp" />
 
@@ -27,7 +27,7 @@
             android:layout_height="48dp" />
 
         <EditText
-            android:id="@+id/nameTextEdit"
+            android:id="@+id/editTextText"
             android:layout_width="326dp"
             android:layout_height="48dp"
             android:ems="10"
@@ -39,11 +39,23 @@
             android:layout_height="6dp" />
 
         <EditText
-            android:id="@+id/passwordTextEdit"
+            android:id="@+id/newPasswordTextEdit"
             android:layout_width="326dp"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="New Password"
+            android:inputType="textPassword" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="6dp" />
+
+        <EditText
+            android:id="@+id/verifyPasswordTextEdit"
+            android:layout_width="326dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:hint="Verify Password"
             android:inputType="textPassword" />
 
         <Space
@@ -51,9 +63,10 @@
             android:layout_height="8dp" />
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/registerButton"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="Register" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
