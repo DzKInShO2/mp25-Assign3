@@ -1,5 +1,6 @@
 package com.kick.mp25_assign3
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -22,15 +23,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.loginButton).setOnClickListener {
-            val emailText = findViewById<EditText>(R.id.emailTextEdit).text.toString()
-            val passwordText = findViewById<EditText>(R.id.passwordTextEdit).text.toString()
+            val emailString = findViewById<EditText>(R.id.emailTextEdit).text.toString()
+            val passwordString = findViewById<EditText>(R.id.passwordTextEdit).text.toString()
 
-            if (emailText !in UserData.userLists || UserData.userLists[emailText]?.get(1) != passwordText) {
+            val userData = Singleton.userDatas[emailString]
+            if ((userData == null) || (userData.password != passwordString)) {
                 Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             Toast.makeText(this, "Login successfully.", Toast.LENGTH_SHORT).show()
+
+            val landingPageIntent = Intent(this, LandingActivity::class.java).apply {
+                putExtra("user", userData)
+            }
+
+            startActivity(landingPageIntent)
         }
     }
 }

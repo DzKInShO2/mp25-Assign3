@@ -24,36 +24,33 @@ class RegisterActivity : AppCompatActivity() {
         val loginPageIntent = Intent(this, LoginActivity::class.java)
 
         findViewById<Button>(R.id.registerButton).setOnClickListener {
-            val newNameText = findViewById<EditText>(R.id.newNameTextEdit).text.toString()
-            val newEmailText = findViewById<EditText>(R.id.newEmailTextEdit).text.toString()
-            val newPasswordText = findViewById<EditText>(R.id.newPasswordTextEdit).text.toString()
-            val verifyPasswordText = findViewById<EditText>(R.id.verifyPasswordTextEdit).text.toString()
+            val newNameString = findViewById<EditText>(R.id.newNameTextEdit).text.toString()
+            val newEmailString = findViewById<EditText>(R.id.newEmailTextEdit).text.toString()
+            val newPasswordString = findViewById<EditText>(R.id.newPasswordTextEdit).text.toString()
+            val verifyPasswordString = findViewById<EditText>(R.id.verifyPasswordTextEdit).text.toString()
 
-            if (newNameText.isEmpty() && newEmailText.isEmpty()
-                && newPasswordText.isEmpty() && verifyPasswordText.isEmpty()) {
+            if (newNameString.isEmpty() && newEmailString.isEmpty()
+                && newPasswordString.isEmpty() && verifyPasswordString.isEmpty()) {
                 Toast.makeText(this, "Please fill out all inputs.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (newEmailText in UserData.userLists) {
+            if (newEmailString in Singleton.userDatas) {
                 Toast.makeText(this, "Email provided had been used.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (!newEmailText.matches(Regex(".+@.*..+"))) {
+            if (!newEmailString.matches(Regex(".+@.*..+"))) {
                 Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (newPasswordText != verifyPasswordText) {
+            if (newPasswordString != verifyPasswordString) {
                 Toast.makeText(this, "Given passwords doesn't match.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            UserData.userLists[newEmailText] = listOf<String>(
-                newNameText,
-                newPasswordText
-            )
+            Singleton.userDatas[newEmailString] = UserData(newNameString, newEmailString, newPasswordString)
 
             Toast.makeText(this, "User has been registered successfully", Toast.LENGTH_SHORT).show()
 

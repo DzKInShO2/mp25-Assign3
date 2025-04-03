@@ -1,5 +1,11 @@
 package com.kick.mp25_assign3
 
-object UserData {
-    var userLists = HashMap<String, List<String>>()
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class UserData(
+    var name: String,
+    var email: String,
+    var password: String
+) : Parcelable
