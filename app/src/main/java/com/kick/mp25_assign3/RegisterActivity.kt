@@ -24,14 +24,17 @@ class RegisterActivity : AppCompatActivity() {
         val loginPageIntent = Intent(this, LoginActivity::class.java)
 
         findViewById<Button>(R.id.registerButton).setOnClickListener {
+            // Get all inputs in the form of string
             val newNameString = findViewById<EditText>(R.id.newNameTextEdit).text.toString()
             val newEmailString = findViewById<EditText>(R.id.newEmailTextEdit).text.toString()
             val newPasswordString = findViewById<EditText>(R.id.newPasswordTextEdit).text.toString()
             val verifyPasswordString = findViewById<EditText>(R.id.verifyPasswordTextEdit).text.toString()
             val newInformationString = findViewById<EditText>(R.id.newInformationTextEdit).text.toString()
 
-            var pref = getSharedPreferences("UserData", MODE_PRIVATE)
+            // Get SharedPrefrences cache
+            var cache = getSharedPreferences("UserData", MODE_PRIVATE)
 
+            // Check if all inputs is filled
             if (newNameString.isEmpty() && newEmailString.isEmpty()
                 && newPasswordString.isEmpty() && verifyPasswordString.isEmpty()
                 && newInformationString.isEmpty()) {
@@ -39,28 +42,32 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (pref.getString(newEmailString, "\u0000") != "\u0000") {
+            // Check if the email had already been used
+            if (cache.getString(newEmailString, "\u0000") != "\u0000") {
                 Toast.makeText(this, "Email provided had been used.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Check if given email format matched valid email format
             if (!newEmailString.matches(Regex(".+@.*..+"))) {
                 Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Check if password is correct by matching new password with verification password
             if (newPasswordString != verifyPasswordString) {
                 Toast.makeText(this, "Given passwords doesn't match.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            with (pref.edit()) {
+            // Save data to the cache
+            with (cache.edit()) {
                 putString(newEmailString, "$newNameString\u0000$newPasswordString\u0000$newInformationString")
                 apply()
             }
-
             Toast.makeText(this, "User has been registered successfully", Toast.LENGTH_SHORT).show()
 
+            // Go to login page if the account has been registered successfully
             startActivity(loginPageIntent)
         }
     }

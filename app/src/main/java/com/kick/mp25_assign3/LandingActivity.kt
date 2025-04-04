@@ -19,7 +19,10 @@ class LandingActivity : AppCompatActivity() {
             insets
         }
 
+        // Get user data from parcelable
         val userData = intent.getParcelableExtra<UserData>("user")
+
+        // Display it when userData is not null
         if (userData != null) {
             var nameText = findViewById<TextView>(R.id.nameText)
             var informationText = findViewById<TextView>(R.id.informationText)
