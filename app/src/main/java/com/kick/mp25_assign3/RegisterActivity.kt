@@ -28,14 +28,18 @@ class RegisterActivity : AppCompatActivity() {
             val newEmailString = findViewById<EditText>(R.id.newEmailTextEdit).text.toString()
             val newPasswordString = findViewById<EditText>(R.id.newPasswordTextEdit).text.toString()
             val verifyPasswordString = findViewById<EditText>(R.id.verifyPasswordTextEdit).text.toString()
+            val newInformationString = findViewById<EditText>(R.id.newInformationTextEdit).text.toString()
+
+            var pref = getSharedPreferences("UserData", MODE_PRIVATE)
 
             if (newNameString.isEmpty() && newEmailString.isEmpty()
-                && newPasswordString.isEmpty() && verifyPasswordString.isEmpty()) {
+                && newPasswordString.isEmpty() && verifyPasswordString.isEmpty()
+                && newInformationString.isEmpty()) {
                 Toast.makeText(this, "Please fill out all inputs.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (newEmailString in Singleton.userDatas) {
+            if (pref.getString(newEmailString, "\u0000") != "\u0000") {
                 Toast.makeText(this, "Email provided had been used.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -50,7 +54,10 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Singleton.userDatas[newEmailString] = UserData(newNameString, newEmailString, newPasswordString)
+            with (pref.edit()) {
+                putString(newEmailString, "$newNameString\u0000$newPasswordString\u0000$newInformationString")
+                apply()
+            }
 
             Toast.makeText(this, "User has been registered successfully", Toast.LENGTH_SHORT).show()
 

@@ -74,6 +74,19 @@
             android:layout_width="match_parent"
             android:layout_height="8dp" />
 
+        <EditText
+            android:id="@+id/newInformationTextEdit"
+            android:layout_width="328dp"
+            android:layout_height="96dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Information"
+            android:inputType="textMultiLine" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
         <Button
             android:id="@+id/registerButton"
             android:layout_width="198dp"

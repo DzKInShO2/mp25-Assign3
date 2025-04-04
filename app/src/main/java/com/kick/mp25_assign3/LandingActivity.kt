@@ -22,7 +22,9 @@ class LandingActivity : AppCompatActivity() {
         val userData = intent.getParcelableExtra<UserData>("user")
         if (userData != null) {
             var nameText = findViewById<TextView>(R.id.nameText)
+            var informationText = findViewById<TextView>(R.id.informationText)
             nameText.text = userData.name
+            informationText.text = userData.information
         }
     }
 }

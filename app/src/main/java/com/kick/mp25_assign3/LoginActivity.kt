@@ -26,9 +26,17 @@ class LoginActivity : AppCompatActivity() {
             val emailString = findViewById<EditText>(R.id.emailTextEdit).text.toString()
             val passwordString = findViewById<EditText>(R.id.passwordTextEdit).text.toString()
 
-            val userData = Singleton.userDatas[emailString]
-            if ((userData == null) || (userData.password != passwordString)) {
-                Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
+            var pref = getSharedPreferences("UserData", MODE_PRIVATE)
+            val prefData = pref.getString(emailString, "\u0000")
+            if (prefData == "\u0000") {
+                Toast.makeText(this, "User by email $emailString doesn't exist", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val separatedData = prefData?.split("\u0000")
+            val userData = UserData(separatedData?.get(0).toString(), emailString, separatedData?.get(1).toString(), separatedData?.get(2).toString())
+            if (passwordString != userData.password) {
+                Toast.makeText(this, "Wrong password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
